@@ -1,2 +1,2 @@
-const Promise = require('./PromisesExtension');
+const Promise = require('./PromiseExtension');
 module.exports = Promise;
