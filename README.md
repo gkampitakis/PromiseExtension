@@ -21,4 +21,4 @@ On root directory in `playground.js` there is an example of both methods how to 
 
 *   **Promise.map**
 
-    Accepts an array and an async callback function and returns and array resolved.
+    Accepts an array and an async callback function and returns a resolved array.
