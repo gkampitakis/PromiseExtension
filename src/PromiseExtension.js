@@ -27,7 +27,7 @@ module.exports = class PromiseExtension extends Promise {
 
 				try {
 					const result = await Promise.all(p);
-					r.push(result);
+					r.push(...result);
 				} catch (error) {
 					reject(error);
 				}
