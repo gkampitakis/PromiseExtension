@@ -1,4 +1,4 @@
-const Promise = require('./PromisesExtension');
+const Promise = require('./src');
 const fetch = require('node-fetch');
 
 const delay = (time, item = null) =>
@@ -22,7 +22,6 @@ async function Main() {
 	Promise.props(asyncObject).then((object) => {
 		console.log(object);
 	});
-
 }
 
 Main();
