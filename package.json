@@ -46,6 +46,13 @@
 			}
 		}
 	},
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com/"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/gkampitakis/promiseExtension.git"
+	},
 	"commitlint": {
 		"extends": [
 			"@commitlint/config-conventional"
