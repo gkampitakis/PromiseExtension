@@ -17,7 +17,7 @@ module.exports = class PromiseExtension extends Promise {
 		);
 	}
 
-	static async map(array, callback, concurrency = 0) {
+	static async map(array, callback, { concurrency } = {}) {
 		return new Promise(async (resolve, reject) => {
 			const r = [];
 			array = chunkArray(array, concurrency);

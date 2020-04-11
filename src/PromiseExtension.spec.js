@@ -42,7 +42,7 @@ describe('PromiseExtension', () => {
 
 	describe('Map', () => {
 		it('Should apply the callback to all elements and resolve', async () => {
-			const result = await Promise.map(['1', '2', '3', '4'], (value) => delay(5000, value), 2);
+			const result = await Promise.map(['1', '2', '3', '4'], (value) => delay(5000, value), { concurrency: 2 });
 
 			expect(result.length).toBe(4);
 			expect(callbackSpy).toHaveBeenCalledTimes(4);

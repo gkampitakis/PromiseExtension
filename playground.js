@@ -33,7 +33,7 @@ async function Main() {
 			'https://jsonplaceholder.typicode.com/todos/1'
 		],
 		(url) => fetch(url).then((response) => response.json()),
-		2
+		{ concurrency: 2 }
 	).then((result) => console.log(result));
 }
 
