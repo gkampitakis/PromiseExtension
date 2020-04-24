@@ -1,14 +1,14 @@
-function isArray(a) {
+function isArray(a): boolean {
 	return !!a && a.constructor === Array;
 }
 
-function isObject(o) {
+function isObject(o): boolean {
 	return !!o && o.constructor === Object;
 }
 
-function chunkArray(a, limit = 0) {
+function chunkArray<T>(a: T[], limit = 0) {
 	if (!isArray(a)) throw new Error('Provide an array');
-	const _a = [],
+	const _a: Array<Array<T>> = [],
 		chunks = Math.ceil(a.length / limit);
 
 	if (chunks === 1 || chunks === 0 || limit === 0) return [a];
@@ -19,8 +19,4 @@ function chunkArray(a, limit = 0) {
 	return _a;
 }
 
-module.exports = {
-	isArray,
-	isObject,
-	chunkArray
-};
+export { isArray, isObject, chunkArray };

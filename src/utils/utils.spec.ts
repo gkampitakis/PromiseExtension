@@ -1,4 +1,4 @@
-const { chunkArray, isArray, isObject } = require('./');
+import { chunkArray, isArray, isObject } from './';
 
 describe('Utils', () => {
 	describe('isArray', () => {
@@ -18,6 +18,7 @@ describe('Utils', () => {
 			expect(isArray(10)).toBe(false);
 		});
 		it('Should return false', () => {
+			//@ts-ignore
 			expect(isArray()).toBe(false);
 		});
 	});
@@ -43,12 +44,14 @@ describe('Utils', () => {
 			expect(isObject(10)).toBe(false);
 		});
 		it('Should return false', () => {
+			// @ts-ignore
 			expect(isObject()).toBe(false);
 		});
 	});
 	describe('chunkArray', () => {
 		it('Should throw error if no object provided', () => {
 			try {
+				//@ts-ignore
 				chunkArray({}, 2);
 			} catch (error) {
 				expect(error.message).toBe('Provide an array');

@@ -1,9 +1,9 @@
-const Promise = require('./');
+import PromiseUtil from './PromiseExtension';
 
 describe('PromiseExtension', () => {
 	const callbackSpy = jest.fn(),
 		delay = (time, item = null, error = false) =>
-			new Promise((resolve) => {
+			new Promise((resolve: any) => {
 				callbackSpy(item);
 				if (error) throw new Error('Unexpected Error');
 				return setTimeout(resolve(item), time);
@@ -22,7 +22,7 @@ describe('PromiseExtension', () => {
 				test3: delay(1000, 'test')
 			};
 
-			const result = await Promise.props(object);
+			const result = await PromiseUtil.props(object);
 
 			expect(result).toEqual({
 				test: 'test',
@@ -33,7 +33,7 @@ describe('PromiseExtension', () => {
 		});
 		it('Should throw error if no object provided', async () => {
 			try {
-				await Promise.props([]);
+				await PromiseUtil.props([]);
 			} catch (error) {
 				expect(error.message).toBe('Promise.props only accepts object');
 			}
@@ -42,7 +42,9 @@ describe('PromiseExtension', () => {
 
 	describe('Map', () => {
 		it('Should apply the callback to all elements and resolve', async () => {
-			const result = await Promise.map(['1', '2', '3', '4'], (value) => delay(5000, value), { concurrency: 2 });
+			const result = await PromiseUtil.map(['1', '2', '3', '4'], (value) => delay(5000, value), {
+				concurrency: 2
+			});
 
 			expect(result.length).toBe(4);
 			expect(callbackSpy).toHaveBeenCalledTimes(4);
@@ -53,7 +55,7 @@ describe('PromiseExtension', () => {
 		});
 
 		it('Should apply the callback to all elements and resolve', async () => {
-			const result = await Promise.map([1, 2, 3, 4], (value) => delay(5000, value));
+			const result = await PromiseUtil.map([1, 2, 3, 4], (value) => delay(5000, value));
 
 			expect(result.length).toBe(4);
 			expect(callbackSpy).toHaveBeenCalledTimes(4);
@@ -65,7 +67,7 @@ describe('PromiseExtension', () => {
 
 		it('Should reject error', async () => {
 			try {
-				await Promise.map(['1', '2', '3', '4'], (value) => delay(5000, value, true), 2);
+				await PromiseUtil.map(['1', '2', '3', '4'], (value) => delay(5000, value, true), { concurrency: 2 });
 			} catch (error) {
 				expect(error.message).toBe('Unexpected Error');
 			}
