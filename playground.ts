@@ -32,9 +32,9 @@ async function Main() {
 		'https://jsonplaceholder.typicode.com/todos/1'
 	];
 
-	PromiseUtil.map((url) => fetch(url).then((response) => response.json()), { concurrency: 2 }).then((result) =>
-		console.log(result)
-	);
+	PromiseUtil.map(urlArray, (url) => fetch(url).then((response) => response.json()), {
+		concurrency: 2
+	}).then((result) => console.log(result));
 }
 
 Main();
