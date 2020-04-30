@@ -57,3 +57,29 @@ PromiseUtil.map(urlArray, (url) => fetch(url).then((response) => response.json()
 	concurrency: 2
 }).then((result) => console.log(result));
 ```
+
+### PromiseUtil.each
+
+Accepts an array and an async callback function which can be called with 3 parameters `value,index.arrayLength` and returns the array resolved.
+
+```javascript
+PromiseUtil.each(['1', Promise.resolve('2'), 3, delay(5000, '4')], (value, index, length) => {
+	console.log(value, index, length);
+}).then((res) => console.log(res));
+```
+
+### PromiseUtil.delay
+
+Accepts an integer number and an optional callback async function. Returns a promise that will resolve after the a delay in the specified time in ms.
+
+```javascript
+PromiseUtil.delay(1000, () => Promise.resolve('1')).then((result) => {
+	console.log(result);
+});
+```
+
+## Author and Maintainer
+
+[Georgios Kampitakis](https://github.com/gkampitakis)
+
+For any [issues](https://github.com/gkampitakis/promiseExtension/issues).

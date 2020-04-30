@@ -51,8 +51,13 @@ async function each<T>(array: Array<T>, callback: (param: T, index?: number, len
 	});
 }
 
+async function delay(timer: number, callback?: Function) {
+	return new Promise((resolve) => setTimeout(() => resolve(callback ? callback() : undefined), timer));
+}
+
 export default {
 	map,
 	props,
-	each
+	each,
+	delay
 };

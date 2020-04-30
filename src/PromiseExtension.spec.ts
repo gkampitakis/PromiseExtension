@@ -113,4 +113,26 @@ describe('PromiseExtension', () => {
 			});
 		});
 	});
+
+	describe('delay', () => {
+		it('Should call the callback and resolve', () => {
+			const callbackSpy = jest.fn();
+
+			return PromiseUtil.delay(100, callbackSpy).then(() => {
+				expect(callbackSpy).toHaveBeenCalledTimes(1);
+			});
+		});
+
+		it('Should call the callback and resolve', () => {
+			return PromiseUtil.delay(100).then((res) => {
+				expect(res).toBeUndefined();
+			});
+		});
+
+		it('Should reject error', () => {
+			return PromiseUtil.delay(100, () => Promise.reject(new Error('MockError'))).catch((error) => {
+				expect(error.message).toBe('MockError');
+			});
+		});
+	});
 });
