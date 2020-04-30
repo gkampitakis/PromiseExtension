@@ -8,6 +8,7 @@
 				"releaseRules": [
 					{ "type": "docs", "scope": "readme", "release": "patch" },
 					{ "type": "feat", "release": "minor" },
+					{ "type": "feat", "scope": "new", "release": "patch" },
 					{ "scope": "no-release", "release": false },
 					{ "scope": "ignore", "release": false },
 					{ "type": "refactor", "scope": "core-*", "release": "minor" },

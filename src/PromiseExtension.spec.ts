@@ -31,6 +31,7 @@ describe('PromiseExtension', () => {
 				test3: 'test'
 			});
 		});
+
 		it('Should throw error if no object provided', async () => {
 			try {
 				await PromiseUtil.props([]);
@@ -65,12 +66,51 @@ describe('PromiseExtension', () => {
 			expect(callbackSpy).toHaveBeenCalledWith(4);
 		});
 
-		it('Should reject error', async () => {
-			try {
-				await PromiseUtil.map(['1', '2', '3', '4'], (value) => delay(5000, value, true), { concurrency: 2 });
-			} catch (error) {
+		it('Should reject error', () => {
+			return PromiseUtil.map(['1', '2', '3', '4'], (value) => delay(5000, value, true), {
+				concurrency: 2
+			}).catch((error) => {
 				expect(error.message).toBe('Unexpected Error');
-			}
+			});
+		});
+	});
+
+	describe('Each', () => {
+		it('Should call the callback and resolve', async () => {
+			const callbackSpy = jest.fn();
+
+			return PromiseUtil.each(['1', Promise.resolve('2'), 3, delay(5000, '4')], (value, index, length) => {
+				callbackSpy(value, index, length);
+			}).then((res) => {
+				expect(res).toEqual(['1', '2', 3, '4']);
+				expect(callbackSpy).toHaveBeenCalledTimes(4);
+				expect(callbackSpy).toHaveBeenCalledWith('1', 0, 4);
+				expect(callbackSpy).toHaveBeenCalledWith('2', 1, 4);
+				expect(callbackSpy).toHaveBeenCalledWith(3, 2, 4);
+				expect(callbackSpy).toHaveBeenCalledWith('4', 3, 4);
+			});
+		});
+
+		it('Should reject error', () => {
+			return PromiseUtil.each(['1', Promise.resolve('2'), 3, delay(5000, '4')], (value) =>
+				Promise.reject(new Error('MockError'))
+			).catch((error) => {
+				expect(error.message).toBe('MockError');
+			});
+		});
+
+		it('Should reject error', () => {
+			const callbackSpy = jest.fn();
+
+			return PromiseUtil.each(
+				['1', Promise.resolve(2), Promise.reject(new Error('MockError')), 3, delay(5000, '4')],
+				(value, index, length) => {
+					callbackSpy(value, index, length);
+				}
+			).catch((error) => {
+				expect(error.message).toBe('MockError');
+				expect(callbackSpy).toHaveBeenCalledTimes(2);
+			});
 		});
 	});
 });

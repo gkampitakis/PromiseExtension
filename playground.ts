@@ -35,6 +35,10 @@ async function Main() {
 	PromiseUtil.map(urlArray, (url) => fetch(url).then((response) => response.json()), {
 		concurrency: 2
 	}).then((result) => console.log(result));
+
+	PromiseUtil.each(['1', Promise.resolve('2'), 3, delay(5000, '4')], (value, index, length) => {
+		console.log(value, index, length);
+	}).then((res) => console.log(res));
 }
 
 Main();
