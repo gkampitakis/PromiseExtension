@@ -19,7 +19,7 @@ describe('PromiseExtension', () => {
 				test: delay(1000, 'test'),
 				test1: delay(1000, 'test'),
 				test2: delay(1000, 'test'),
-				test3: delay(1000, 'test')
+				test3: delay(5000, 'test')
 			};
 
 			const result = await PromiseUtil.props(object);
@@ -32,12 +32,40 @@ describe('PromiseExtension', () => {
 			});
 		});
 
-		it('Should throw error if no object provided', async () => {
-			try {
-				await PromiseUtil.props([]);
-			} catch (error) {
-				expect(error.message).toBe('Promise.props only accepts object');
-			}
+		it('Should return a resolved object even if its nested', async () => {
+			const object = {
+				test: delay(1000, 'test'),
+				test1: delay(1000, 'test'),
+				test2: delay(1000, 'test'),
+				nested: {
+					inner: {
+						test3: delay(5000, 'test')
+					},
+					test4: delay(5000, 'test')
+				}
+			};
+
+			const result = await PromiseUtil.props(object);
+
+			expect(result).toEqual({
+				test: 'test',
+				test1: 'test',
+				test2: 'test',
+				nested: {
+					inner: {
+						test3: 'test'
+					},
+					test4: 'test'
+				}
+			});
+		});
+
+		it('Should resolve if no object provided', () => {
+			return PromiseUtil.props([])
+				.then((res) => {
+					expect(res).toBeUndefined();
+				})
+				.finally(() => expect.assertions(1));
 		});
 	});
 
@@ -94,23 +122,28 @@ describe('PromiseExtension', () => {
 		it('Should reject error', () => {
 			return PromiseUtil.each(['1', Promise.resolve('2'), 3, delay(5000, '4')], (value) =>
 				Promise.reject(new Error('MockError'))
-			).catch((error) => {
-				expect(error.message).toBe('MockError');
-			});
+			)
+				.catch((error) => {
+					expect(error.message).toBe('MockError');
+				})
+				.finally(() => expect.assertions(1));
 		});
 
 		it('Should reject error', () => {
 			const callbackSpy = jest.fn();
-
 			return PromiseUtil.each(
 				['1', Promise.resolve(2), Promise.reject(new Error('MockError')), 3, delay(5000, '4')],
 				(value, index, length) => {
 					callbackSpy(value, index, length);
 				}
-			).catch((error) => {
-				expect(error.message).toBe('MockError');
-				expect(callbackSpy).toHaveBeenCalledTimes(2);
-			});
+			)
+				.catch((error) => {
+					expect(error.message).toBe('MockError');
+					expect(callbackSpy).toHaveBeenCalledTimes(2);
+				})
+				.finally(() => {
+					expect.assertions(2);
+				});
 		});
 	});
 

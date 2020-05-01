@@ -1,13 +1,14 @@
 import { chunkArray, isObject } from './utils';
 
 async function props<T>(object: T): Promise<T> {
-	if (!isObject(object)) throw new Error('Promise.props only accepts object');
+	if (!isObject(object)) return new Promise((resolve) => resolve());
 	return Object.assign(
 		{},
 		...(await Promise.all(
-			Object.entries(object).map(async ([key, value]) => ({
-				[key]: await value
-			}))
+			Object.entries(object).map(async ([key, value]) => {
+				if (Object.entries(object[key]).length > 0) return { [key]: await props(object[key]) };
+				return { [key]: await value };
+			})
 		))
 	);
 }

@@ -26,6 +26,8 @@ import PromiseUtil from '@gkampitakis/promise-util';
 
 Accepts an object containing fields with async code and returns an object with resolved values.
 
+> Supports nested object with promises.
+
 ```javascript
 const delay = (time, item) => new Promise((resolve: any) => setTimeout(resolve(item), time));
 
