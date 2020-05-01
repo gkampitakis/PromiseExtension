@@ -22,8 +22,10 @@
 	"keywords": [
 		"promises",
 		"promises utils",
-		"Promise.map",
-		"Promise.prop"
+		"Promise map",
+		"Promise prop",
+		"Promise each",
+		"Promise delay"
 	],
 	"devDependencies": {
 		"@commitlint/cli": "^8.3.5",

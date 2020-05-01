@@ -78,7 +78,7 @@ PromiseUtil.delay(1000, () => Promise.resolve('1')).then((result) => {
 });
 ```
 
-It can also have an option boolean parameter
+It can also have an optional boolean parameter
 
 ```javascript
 PromiseUtil.delay(1000, true, () => Promise.resolve('1')).then((result) => {
