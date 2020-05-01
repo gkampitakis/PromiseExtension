@@ -115,12 +115,36 @@ describe('PromiseExtension', () => {
 	});
 
 	describe('delay', () => {
-		it('Should call the callback and resolve', () => {
+		it('Should call the callback after the delay and resolve', () => {
 			const callbackSpy = jest.fn();
 
-			return PromiseUtil.delay(100, callbackSpy).then(() => {
-				expect(callbackSpy).toHaveBeenCalledTimes(1);
-			});
+			jest.useFakeTimers();
+
+			PromiseUtil.delay(2000, callbackSpy);
+
+			expect(callbackSpy).toHaveBeenCalledTimes(0);
+
+			jest.advanceTimersByTime(2000);
+
+			expect(callbackSpy).toHaveBeenCalledTimes(1);
+
+			jest.useRealTimers();
+		});
+
+		it('Should call the callback before the delay and resolve', () => {
+			const callbackSpy = jest.fn();
+
+			jest.useFakeTimers();
+
+			PromiseUtil.delay(2000, true, callbackSpy);
+
+			expect(callbackSpy).toHaveBeenCalledTimes(1);
+
+			jest.advanceTimersByTime(2000);
+
+			expect(callbackSpy).toHaveBeenCalledTimes(1);
+
+			jest.useRealTimers();
 		});
 
 		it('Should call the callback and resolve', () => {
@@ -129,8 +153,20 @@ describe('PromiseExtension', () => {
 			});
 		});
 
+		it('Should call the callback and resolve', () => {
+			return PromiseUtil.delay(100, true, () => Promise.resolve(1)).then((res) => {
+				expect(res).toBe(1);
+			});
+		});
+
 		it('Should reject error', () => {
 			return PromiseUtil.delay(100, () => Promise.reject(new Error('MockError'))).catch((error) => {
+				expect(error.message).toBe('MockError');
+			});
+		});
+
+		it('Should reject error', () => {
+			return PromiseUtil.delay(100, true, () => Promise.reject(new Error('MockError'))).catch((error) => {
 				expect(error.message).toBe('MockError');
 			});
 		});

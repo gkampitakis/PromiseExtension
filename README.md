@@ -78,6 +78,19 @@ PromiseUtil.delay(1000, () => Promise.resolve('1')).then((result) => {
 });
 ```
 
+It can also have an option boolean parameter
+
+```javascript
+PromiseUtil.delay(1000, true, () => Promise.resolve('1')).then((result) => {
+	console.log(result);
+});
+```
+
+which determines the order in which the delay is going to take place. If the parameter is `true` first the callback function is executed
+and then the delay happens as if the parameter is false first waits for the delay and then executes the function.
+
+> The default behavior is first wait for the delay and then execute the function.
+
 ## Author and Maintainer
 
 [Georgios Kampitakis](https://github.com/gkampitakis)

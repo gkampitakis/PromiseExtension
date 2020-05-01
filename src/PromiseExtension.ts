@@ -51,8 +51,24 @@ async function each<T>(array: Array<T>, callback: (param: T, index?: number, len
 	});
 }
 
-async function delay(timer: number, callback?: Function) {
-	return new Promise((resolve) => setTimeout(() => resolve(callback ? callback() : undefined), timer));
+async function delay(timer: number, order: boolean, callback: Function): Promise<any>;
+async function delay(timer: number, callback?: Function): Promise<any>;
+async function delay(timer: number): Promise<any>;
+
+async function delay(timer: any, order?: any, callback?: any) {
+	const fn = typeof order === 'function' ? order : callback;
+	const o = typeof order === 'boolean' ? order : false;
+
+	return o
+		? new Promise(async (resolve, reject) => {
+				try {
+					const r = await fn();
+					setTimeout(() => resolve(r), timer);
+				} catch (e) {
+					reject(e);
+				}
+		  })
+		: new Promise((resolve) => setTimeout(() => resolve(fn ? fn() : undefined), timer));
 }
 
 export default {

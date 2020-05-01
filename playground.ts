@@ -40,7 +40,9 @@ async function Main() {
 		console.log(value, index, length);
 	}).then((res) => console.log(res));
 
-	PromiseUtil.delay(1000, () => Promise.resolve('1')).then((result) => {
+	PromiseUtil.delay(1000, false, () =>
+		fetch('https://jsonplaceholder.typicode.com/todos/1').then((response) => response.json())
+	).then((result) => {
 		console.log(result);
 	});
 }
