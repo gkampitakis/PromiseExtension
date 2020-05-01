@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/gkampitakis/PromiseExtension/compare/v1.2.1...v1.3.0) (2020-05-01)
+
+
+### Features
+
+* **new:** add support on props for nested objects ([eb80547](https://github.com/gkampitakis/PromiseExtension/commit/eb8054731ff7c5d58f6435678ebb02c12785e2dd))
+
 ## [1.2.1](https://github.com/gkampitakis/PromiseExtension/compare/v1.2.0...v1.2.1) (2020-05-01)
 
 
