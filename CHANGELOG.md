@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/gkampitakis/PromiseExtension/compare/v1.2.0...v1.2.1) (2020-05-01)
+
+
+### Bug Fixes
+
+* fix error of exposing wrong file ([3a2caeb](https://github.com/gkampitakis/PromiseExtension/commit/3a2caeb865eefbab91ef7c3314cde1325b0bf2d3))
+
 # [1.2.0](https://github.com/gkampitakis/PromiseExtension/compare/v1.1.1...v1.2.0) (2020-05-01)
 
 

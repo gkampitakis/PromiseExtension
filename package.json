@@ -1,6 +1,6 @@
 {
 	"name": "@gkampitakis/promise-util",
-	"version": "1.2.0",
+	"version": "1.2.1",
 	"description": "",
 	"main": "lib/PromiseExtension.js",
 	"types": "lib/PromiseExtension.d.ts",
