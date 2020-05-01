@@ -2,8 +2,8 @@
 	"name": "@gkampitakis/promise-util",
 	"version": "1.2.0",
 	"description": "",
-	"main": "lib/index.js",
-	"types": "lib/index.d.ts",
+	"main": "lib/PromiseExtension.js",
+	"types": "lib/PromiseExtension.d.ts",
 	"scripts": {
 		"test": "npm run clean && npm run eslint && jest",
 		"build": "npm run clean && tsc",
