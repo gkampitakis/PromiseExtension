@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/gkampitakis/PromiseExtension/compare/v1.3.0...v1.3.1) (2020-07-30)
+
+
+### Bug Fixes
+
+* update dependencies ([b480492](https://github.com/gkampitakis/PromiseExtension/commit/b480492f7ebb5c6c289eb6d6dcbbe711a9dbd7e4))
+
 # [1.3.0](https://github.com/gkampitakis/PromiseExtension/compare/v1.2.1...v1.3.0) (2020-05-01)
 
 
