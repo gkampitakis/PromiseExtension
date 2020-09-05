@@ -11,7 +11,7 @@ function chunkArray<T>(a: T[], limit = 0) {
 	const _a: Array<Array<T>> = [],
 		chunks = Math.ceil(a.length / limit);
 
-	if (chunks === 1 || chunks === 0 || limit === 0) return [a];
+	if (chunks < 2 || limit === 0) return [a];
 
 	for (let i = 0; i < chunks; i++) {
 		_a.push(a.slice(i * limit, i * limit + limit));

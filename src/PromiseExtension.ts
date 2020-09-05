@@ -6,7 +6,7 @@ async function props<T>(object: T): Promise<T> {
 		{},
 		...(await Promise.all(
 			Object.entries(object).map(async ([key, value]) => {
-				if (Object.entries(object[key]).length > 0) return { [key]: await props(object[key]) };
+				if (Object.entries(value).length > 0) return { [key]: await props(value) };
 				return { [key]: await value };
 			})
 		))
@@ -22,12 +22,9 @@ async function map<T>(
 		const r: any[] = [],
 			iterable = chunkArray(array, concurrency);
 
-		for (let i = 0; i < iterable.length; i++) {
-			const p = iterable[i].map(callback);
-
+		for await (const chunk of iterable) {
 			try {
-				const result: any = await Promise.all(p);
-				r.push(...result);
+				r.push(...(await Promise.all(chunk.map(callback))));
 			} catch (e) {
 				reject(e);
 			}
