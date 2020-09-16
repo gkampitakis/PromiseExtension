@@ -238,7 +238,7 @@ describe('PromiseExtension', () => {
         { status: 'fulfilled', value: 5 },
         { status: 'fulfilled', value: 10 },
         { status: 'fulfilled', value: 20 }
-      ])
+      ]);
     });
 
     it('Should resolve with reject reason', async () => {
@@ -247,6 +247,15 @@ describe('PromiseExtension', () => {
         { status: 'rejected', reason: 'error' },
         { status: 'rejected', reason: 'error2' }
       ])
+    });
+
+    it('Support plain values', async () => {
+      const value = await PromisesExtension.allSettled([Promise.resolve(5), 10, Promise.reject('error')])
+      expect(value).toEqual([
+        { status: 'fulfilled', value: 5 },
+        { status: 'fulfilled', value: 10 },
+        { status: 'rejected', reason: 'error' }
+      ]);
     });
   });
 });

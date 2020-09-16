@@ -2,8 +2,8 @@
   "name": "promises-extension",
   "version": "1.0.0",
   "description": "",
-  "main": "lib/PromiseExtension.js",
-  "types": "lib/PromiseExtension.d.ts",
+  "main": "lib/PromisesExtension.js",
+  "types": "lib/PromisesExtension.d.ts",
   "scripts": {
     "test": "npm run clean && npm run eslint && jest",
     "build": "npm run clean && tsc",
@@ -72,10 +72,10 @@
     ],
     "coverageThreshold": {
       "global": {
-        "branches": 90,
-        "functions": 90,
-        "lines": 90,
-        "statements": 90
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
       }
     }
   },

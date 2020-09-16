@@ -79,16 +79,22 @@ async function delay (timer: any, order?: any, callback?: any) {
     );
 }
 
-async function allSettled (promises: Promise<any>[]) {
-  return Promise.all(promises.map(v => v
-    .then(d => ({
-      status: 'fulfilled',
-      value: d
-    }))
-    .catch(e => ({
-      status: 'rejected',
-      reason: e
-    }))));
+async function allSettled (promises: (Promise<any> | any)[]) {
+  return Promise.all(promises.map(v => (
+    v.then !== undefined ?
+      v
+        .then(d => ({
+          status: 'fulfilled',
+          value: d
+        }))
+        .catch(e => ({
+          status: 'rejected',
+          reason: e
+        })) : {
+        status: 'fulfilled',
+        value: v
+      }
+  )));
 }
 
 export default {
