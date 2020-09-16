@@ -1,7 +1,7 @@
 {
   "name": "promises-extension",
   "version": "1.0.1",
-  "description": "",
+  "description": "A module containing some useful methods for extending native Promises",
   "main": "lib/PromisesExtension.js",
   "types": "lib/PromisesExtension.d.ts",
   "scripts": {
