@@ -21,11 +21,12 @@
   "license": "ISC",
   "keywords": [
     "promises",
-    "promises utils",
+    "promises extension",
     "Promise map",
     "Promise prop",
     "Promise each",
-    "Promise delay"
+    "Promise delay",
+    "Promise allSettled"
   ],
   "devDependencies": {
     "@commitlint/cli": "^9.1.2",
