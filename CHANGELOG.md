@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/gkampitakis/promises-extension/compare/v1.0.0...v1.0.1) (2020-09-16)
+
+
+### Bug Fixes
+
+* misconfigured export and add support for any value in allSettled ([de9339e](https://github.com/gkampitakis/promises-extension/commit/de9339e02cf16c37a29d88ec78837fddd344744a))
+
 # 1.0.0 (2020-09-16)
 
 

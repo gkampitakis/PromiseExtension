@@ -1,6 +1,6 @@
 {
   "name": "promises-extension",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "lib/PromisesExtension.js",
   "types": "lib/PromisesExtension.d.ts",
