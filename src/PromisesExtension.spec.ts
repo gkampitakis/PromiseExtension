@@ -167,7 +167,7 @@ describe('PromiseExtension', () => {
     });
   });
 
-  describe('delay', () => {
+  describe('Delay', () => {
     it('Should call the callback after the delay and resolve', () => {
       const callbackSpy = jest.fn();
 
@@ -228,6 +228,25 @@ describe('PromiseExtension', () => {
       ).catch((error) => {
         expect(error.message).toBe('MockError');
       });
+    });
+  });
+
+  describe('AllSettled', () => {
+    it('Should resolve with value', async () => {
+      const value = await PromisesExtension.allSettled([Promise.resolve(5), Promise.resolve(10), Promise.resolve(20)])
+      expect(value).toEqual([
+        { status: 'fulfilled', value: 5 },
+        { status: 'fulfilled', value: 10 },
+        { status: 'fulfilled', value: 20 }
+      ])
+    });
+
+    it('Should resolve with reject reason', async () => {
+      const value = await PromisesExtension.allSettled([Promise.reject('error'), Promise.reject('error2')])
+      expect(value).toEqual([
+        { status: 'rejected', reason: 'error' },
+        { status: 'rejected', reason: 'error2' }
+      ])
     });
   });
 });

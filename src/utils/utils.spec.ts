@@ -12,7 +12,7 @@ describe('Utils', () => {
       expect(isArray({})).toBe(false);
     });
     it('Should return false', () => {
-      expect(isArray(() => {})).toBe(false);
+      expect(isArray(() => { })).toBe(false);
     });
     it('Should return false', () => {
       expect(isArray(10)).toBe(false);
@@ -30,7 +30,7 @@ describe('Utils', () => {
       expect(
         isObject({
           test: 'test',
-          mock: 'mockObject',
+          mock: 'mockObject'
         })
       ).toBe(true);
     });
@@ -38,7 +38,7 @@ describe('Utils', () => {
       expect(isObject([])).toBe(false);
     });
     it('Should return false', () => {
-      expect(isObject(() => {})).toBe(false);
+      expect(isObject(() => { })).toBe(false);
     });
     it('Should return false', () => {
       expect(isObject(10)).toBe(false);

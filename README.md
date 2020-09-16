@@ -103,6 +103,10 @@ and then the delay happens as if the parameter is false first waits for the dela
 
 > The default behavior is first wait for the delay and then execute the function.
 
+### Promises.allSettled
+
+A polyfill for native Promise.allSettled introduced at 12.10 version.
+
 ### Changelog
 
 [CHANGELOG.md](./CHANGELOG.md)

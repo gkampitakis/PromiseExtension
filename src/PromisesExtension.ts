@@ -79,9 +79,22 @@ async function delay (timer: any, order?: any, callback?: any) {
     );
 }
 
+async function allSettled (promises: Promise<any>[]) {
+  return Promise.all(promises.map(v => v
+    .then(d => ({
+      status: 'fulfilled',
+      value: d
+    }))
+    .catch(e => ({
+      status: 'rejected',
+      reason: e
+    }))));
+}
+
 export default {
   map,
   props,
   each,
   delay,
+  allSettled
 };
