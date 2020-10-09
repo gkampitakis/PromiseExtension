@@ -18,7 +18,7 @@ async function map<T> (
   array: Array<T>,
   callback: (param: T, index?: number) => any,
   { concurrency }: { concurrency: number } = { concurrency: 1 }
-): Promise<any> {
+): Promise<Array<any>> {
   return new Promise(async (resolve, reject) => {
     const r: any[] = [],
       iterable = chunkArray(array, concurrency);
@@ -79,8 +79,8 @@ async function delay (timer: any, order?: any, callback?: any) {
     );
 }
 
-async function allSettled (promises: (Promise<any> | any)[]) {
-  return Promise.all(promises.map(v => (
+async function allSettled<T> (promises: (Promise<T> | T)[]) {
+  return Promise.all(promises.map((v: any) => (
     v.then !== undefined ?
       v
         .then(d => ({
@@ -97,7 +97,7 @@ async function allSettled (promises: (Promise<any> | any)[]) {
   )));
 }
 
-export default {
+export {
   map,
   props,
   each,

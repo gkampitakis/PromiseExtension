@@ -8,6 +8,14 @@
     "noImplicitAny": false,
     "esModuleInterop": true
   },
-  "include": ["src", "src/index.ts"],
-  "exclude": ["example/**/*", "node_modules", "**/__mocks__/*", "**/*.spec.ts"]
+  "include": [
+    "src",
+    "src/index.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/__mocks__/*",
+    "**/*.spec.ts",
+    "example/**/*"
+  ]
 }

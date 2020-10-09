@@ -11,10 +11,10 @@ A module containing some useful methods for extending native Promises.
 
 ```javascript
 //Using Node.js `require()`
-const PromisesExtension = require('promises-extension').default;
+const PromisesExtension = require('promises-extension');
 
 //Using ES6 import
-import PromisesExtension from 'promises-extension';
+import * as PromisesExtension from 'promises-extension';
 ```
 
 ## Overview
