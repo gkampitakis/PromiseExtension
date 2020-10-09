@@ -63,9 +63,21 @@ describe('PromiseExtension', () => {
     it('Should resolve if no object provided', () => {
       return PromisesExtension.props([])
         .then((res) => {
-          expect(res).toBeUndefined();
+          expect(res).toEqual([]);
         })
         .finally(() => expect.assertions(1));
+    });
+
+    it('Should resolve simple objects', async () => {
+      const object = {
+        arrayValues: ['123', 1, {}],
+        object: {
+          mock: 'value',
+          nested: {}
+        }
+      };
+
+      expect(await PromisesExtension.props(object)).toEqual(object);
     });
   });
 
