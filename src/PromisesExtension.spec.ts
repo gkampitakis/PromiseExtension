@@ -1,8 +1,8 @@
-import PromisesExtension from './PromisesExtension';
+import * as PromisesExtension from './PromisesExtension';
 
 describe('PromiseExtension', () => {
   const callbackSpy = jest.fn(),
-    delay = (time, item = null, error = false) =>
+    delay = (time, item: any = null, error = false) =>
       new Promise((resolve: any) => {
         callbackSpy(item);
         if (error) throw new Error('Unexpected Error');

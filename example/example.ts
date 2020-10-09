@@ -1,7 +1,7 @@
-import PromisesExtension from '../src/PromisesExtension';
+import * as PromisesExtension from '../src/PromisesExtension';
 import fetch from 'node-fetch';
 
-const delay = (time, item = null) =>
+const delay = (time, item: any = undefined) =>
   new Promise((resolve: any) => setTimeout(resolve(item), time));
 
 async function Main () {
