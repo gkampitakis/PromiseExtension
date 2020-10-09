@@ -1,7 +1,7 @@
 import { chunkArray, isObject } from './utils';
 
 async function props<T> (object: T): Promise<T> {
-  if (!isObject(object)) return new Promise((resolve) => resolve());
+  if (!isObject(object)) return object;
   return Object.assign(
     {},
     ...(await Promise.all(
