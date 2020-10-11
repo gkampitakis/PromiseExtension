@@ -1,3 +1,17 @@
+# [2.0.0](https://github.com/gkampitakis/promises-extension/compare/v1.0.1...v2.0.0) (2020-10-11)
+
+
+### Bug Fixes
+
+* change default export ([e2fea2a](https://github.com/gkampitakis/promises-extension/commit/e2fea2aebd2b1c5e24a272e9408f236e4a0387d5))
+* performance updates and minor issues ([4ed257e](https://github.com/gkampitakis/promises-extension/commit/4ed257e1ed03e1b477979dc6182751a2e9a91e5d))
+* props simple values not resolving ([081e080](https://github.com/gkampitakis/promises-extension/commit/081e0800a1cfc0820d8a84cfe737fd1a40fa84b2))
+
+
+### BREAKING CHANGES
+
+* update to simple exports
+
 ## [1.0.1](https://github.com/gkampitakis/promises-extension/compare/v1.0.0...v1.0.1) (2020-09-16)
 
 
