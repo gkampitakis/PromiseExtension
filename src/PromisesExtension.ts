@@ -21,7 +21,8 @@ async function map<T> (
 ): Promise<Array<any>> {
   return new Promise(async (resolve, reject) => {
     const r: any[] = [],
-      iterable = chunkArray(array, concurrency);
+      chunkSize = Math.ceil(array.length / concurrency),
+      iterable = chunkArray(array, chunkSize); // BUG: the concurrency is different from chunkSize
 
     for await (const chunk of iterable) {
       try {
@@ -39,7 +40,7 @@ async function each<T> (
   callback: (param: T, index?: number, length?: number) => any
 ): Promise<any> {
   return new Promise(async (resolve, reject) => {
-    const r: any = [];
+    const r: T[] = [];
     try {
       for (let i = 0; i < array.length; i++) {
         const v = await array[i];
@@ -80,8 +81,12 @@ async function delay (timer: any, order?: any, callback?: any) {
 }
 
 async function allSettled<T> (promises: (Promise<T> | T)[]) {
-  return Promise.all(promises.map((v: any) => (
-    v.then !== undefined ?
+  const { length } = promises,
+    r: Promise<{ status: string; reason?: any; value?: any }>[] = [];
+
+  for (let i = 0; i < length; i++) {
+    const v: any = promises[i];
+    const elem = v.then !== undefined ?
       v
         .then(d => ({
           status: 'fulfilled',
@@ -94,7 +99,10 @@ async function allSettled<T> (promises: (Promise<T> | T)[]) {
         status: 'fulfilled',
         value: v
       }
-  )));
+    r.push(elem);
+  }
+
+  return Promise.all(r);
 }
 
 export {

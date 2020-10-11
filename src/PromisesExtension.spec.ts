@@ -84,19 +84,15 @@ describe('PromiseExtension', () => {
   describe('Map', () => {
     it('Should apply the callback to all elements and resolve', async () => {
       const result = await PromisesExtension.map(
-        ['1', '2', '3', '4'],
-        (value) => delay(5000, value),
+        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+        (value) => delay(1000, value),
         {
-          concurrency: 2,
+          concurrency: 3,
         }
       );
 
-      expect(result.length).toBe(4);
-      expect(callbackSpy).toHaveBeenCalledTimes(4);
-      expect(callbackSpy).toHaveBeenCalledWith('1');
-      expect(callbackSpy).toHaveBeenCalledWith('2');
-      expect(callbackSpy).toHaveBeenCalledWith('3');
-      expect(callbackSpy).toHaveBeenCalledWith('4');
+      expect(result.length).toBe(20);
+      expect(callbackSpy).toHaveBeenCalledTimes(20);
     });
 
     it('Should apply the callback to all elements and resolve', async () => {
