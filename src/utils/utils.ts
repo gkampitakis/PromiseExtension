@@ -1,22 +1,19 @@
-function isArray(a): boolean {
-  return !!a && a.constructor === Array;
+function isArray (a): boolean {
+  return Array.isArray(a);
 }
 
-function isObject(o): boolean {
+function isObject (o): boolean {
   return !!o && o.constructor === Object;
 }
 
-function chunkArray<T>(a: T[], limit = 0) {
+function chunkArray (a: Array<any>, chunkSize = 0): any[] {
   if (!isArray(a)) throw new Error('Provide an array');
-  const _a: Array<Array<T>> = [],
-    chunks = Math.ceil(a.length / limit);
-
-  if (chunks < 2 || limit === 0) return [a];
-
-  for (let i = 0; i < chunks; i++) {
-    _a.push(a.slice(i * limit, i * limit + limit));
+  if (chunkSize === 0 || a.length <= chunkSize) return [a];
+  const chunks: any = [];
+  while (a.length) {
+    chunks.push(a.splice(0, chunkSize));
   }
-  return _a;
+  return chunks;
 }
 
 export { isArray, isObject, chunkArray };

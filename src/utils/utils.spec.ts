@@ -62,10 +62,12 @@ describe('Utils', () => {
       const array = [1, 2, 3];
       expect(chunkArray(array, 1).length).toBe(3);
     });
+
     it('Should return an array containing 1 chunk', () => {
       const array = [1, 2, 3];
       expect(chunkArray(array, 10).length).toBe(1);
     });
+
     it('Should return an array containing 1 chunk', () => {
       const array = [1, 2, 3];
       expect(chunkArray(array, 0).length).toBe(1);
@@ -82,6 +84,17 @@ describe('Utils', () => {
       expect(res1[0].length).toBe(0);
       expect(res2.length).toBe(1);
       expect(res2[0].length).toBe(0);
+    });
+
+    it('Should split array into 4 chunks', () => {
+      const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+      const res = chunkArray(array, 3);
+      expect(res.length).toBe(4);
+      expect(res[0]).toEqual([1, 2, 3]);
+      expect(res[1]).toEqual([4, 5, 6]);
+      expect(res[2]).toEqual([7, 8, 9]);
+      expect(res[3]).toEqual([10]);
     });
   });
 });
