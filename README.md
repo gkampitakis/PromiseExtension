@@ -120,3 +120,7 @@ You can also check an [example](./example) usage.
 ### Issues
 
 For any [issues](https://github.com/gkampitakis/promises-extension/issues).
+
+## License 
+
+MIT License
