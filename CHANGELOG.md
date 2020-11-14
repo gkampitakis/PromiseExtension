@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/gkampitakis/promises-extension/compare/v2.0.0...v2.0.1) (2020-11-14)
+
+
+### Bug Fixes
+
+* add MIT license ([44dcef8](https://github.com/gkampitakis/promises-extension/commit/44dcef89f6755fb0aec815aefe878b675ff6a669))
+
 # [2.0.0](https://github.com/gkampitakis/promises-extension/compare/v1.0.1...v2.0.0) (2020-10-11)
 
 
